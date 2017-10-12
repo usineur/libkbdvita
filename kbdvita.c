@@ -146,6 +146,9 @@ char *kbdvita_get(char *title, int maxLen) {
 
 	bool done;
 	do {
+		vita2d_start_drawing();
+		vita2d_clear_screen();
+
 		done = true;
 
 		int ime_result = updateImeDialog();
@@ -156,7 +159,6 @@ char *kbdvita_get(char *title, int maxLen) {
 			done = false;
 		}
 
-		vita2d_start_drawing();
 		vita2d_end_drawing();
 		vita2d_common_dialog_update();
 		vita2d_swap_buffers();
