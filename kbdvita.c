@@ -133,7 +133,7 @@ int updateImeDialog() {
 	return status;
 }
 
-char *kbdvita_get(const char *title, int maxLen) {
+char *kbdvita_get(const char *title, char *initial_text, int max_text_length) {
 	char *name = NULL;
 
 	if (ime_init_apputils == 0) {
@@ -142,7 +142,7 @@ char *kbdvita_get(const char *title, int maxLen) {
 		ime_init_apputils = 1;
 	}
 
-	initImeDialog((char *)title, "", maxLen, SCE_IME_TYPE_BASIC_LATIN, 0);
+	initImeDialog((char *)title, initial_text, max_text_length, SCE_IME_TYPE_BASIC_LATIN, 0);
 
 	bool done;
 	do {

@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-char *kbdvita_get(const char *title, int maxLen);
+char *kbdvita_get(const char *title, char *initial_text, int max_text_length);
 
 #ifdef __cplusplus
 }
