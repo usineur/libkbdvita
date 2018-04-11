@@ -1,6 +1,14 @@
 #ifndef __KEYBOARD_VITA_H__
 #define __KEYBOARD_VITA_H__
 
-char *kbdvita_get(char *title, int maxLen);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+char *kbdvita_get(const char *title, int maxLen);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
