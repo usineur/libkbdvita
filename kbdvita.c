@@ -64,7 +64,7 @@ void utf8_to_utf16(uint8_t *src, uint16_t *dst) {
 	*dst = '\0';
 }
 
-int initImeDialog(char *title, char *initial_text, int max_text_length, int type, int option) {
+int initImeDialog(const char *title, const char *initial_text, int max_text_length, int type, int option) {
 	if (ime_dialog_running)
 		return -1;
 
@@ -133,7 +133,7 @@ int updateImeDialog() {
 	return status;
 }
 
-char *kbdvita_get(const char *title, char *initial_text, int max_text_length) {
+char *kbdvita_get(const char *title, const char *initial_text, int max_text_length) {
 	char *name = NULL;
 
 	if (ime_init_apputils == 0) {
@@ -142,7 +142,7 @@ char *kbdvita_get(const char *title, char *initial_text, int max_text_length) {
 		ime_init_apputils = 1;
 	}
 
-	initImeDialog((char *)title, initial_text, max_text_length, SCE_IME_TYPE_BASIC_LATIN, 0);
+	initImeDialog(title, initial_text, max_text_length, SCE_IME_TYPE_BASIC_LATIN, 0);
 
 	bool done;
 	do {
