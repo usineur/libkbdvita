@@ -4,7 +4,7 @@ OBJS       = kbdvita.o
 PREFIX  = $(VITASDK)/arm-vita-eabi
 CC      = arm-vita-eabi-gcc
 AR      = arm-vita-eabi-ar
-CFLAGS  = -Wl,-q -Wall -O3
+CFLAGS  = -Wl,-q -Wall -O3 -DUSE_VITA2D
 ASFLAGS = $(CFLAGS)
 
 all: $(TARGET_LIB)

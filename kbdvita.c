@@ -5,7 +5,13 @@
 #include <psp2/kernel/processmgr.h>
 #include <psp2/ime_dialog.h>
 #include <psp2/message_dialog.h>
+#ifdef USE_VITA2D
 #include <vita2d.h>
+#elif USE_VITAGL
+#include <vitaGL.h>
+#else
+#error "Unknown context"
+#endif
 #include "kbdvita.h"
 
 #define IME_DIALOG_RESULT_NONE 0
@@ -146,8 +152,14 @@ char *kbdvita_get(const char *title, const char *initial_text, int max_text_leng
 
 	bool done;
 	do {
+#ifdef USE_VITA2D
 		vita2d_start_drawing();
 		vita2d_clear_screen();
+#elif USE_VITAGL
+		vglStartRendering();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0, 0, 0, 1);
+#endif
 
 		done = true;
 
@@ -159,9 +171,15 @@ char *kbdvita_get(const char *title, const char *initial_text, int max_text_leng
 			done = false;
 		}
 
+#ifdef USE_VITA2D
 		vita2d_end_drawing();
 		vita2d_common_dialog_update();
 		vita2d_swap_buffers();
+#elif USE_VITAGL
+		vglStopRenderingInit();
+		vglUpdateCommonDialog();
+		vglStopRenderingTerm();
+#endif
 		sceDisplayWaitVblankStart();
 	} while (!done);
 
