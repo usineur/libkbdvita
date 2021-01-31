@@ -156,7 +156,6 @@ char *kbdvita_get(const char *title, const char *initial_text, int max_text_leng
 		vita2d_start_drawing();
 		vita2d_clear_screen();
 #elif USE_VITAGL
-		vglStartRendering();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0, 0, 0, 1);
 #endif
@@ -176,9 +175,7 @@ char *kbdvita_get(const char *title, const char *initial_text, int max_text_leng
 		vita2d_common_dialog_update();
 		vita2d_swap_buffers();
 #elif USE_VITAGL
-		vglStopRenderingInit();
-		vglUpdateCommonDialog();
-		vglStopRenderingTerm();
+		vglSwapBuffers(GL_TRUE);
 #endif
 		sceDisplayWaitVblankStart();
 	} while (!done);
